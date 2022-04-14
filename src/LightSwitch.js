@@ -23,27 +23,48 @@ export default function LightSwitch({ lightStateChanger,...props }) {
           <mesh geometry={nodes.Cube_1.geometry} material={materials.screw} />
           <mesh geometry={nodes.Cube_2.geometry} material={materials.switchBody} />
         </group>
-        <mesh onClick={() => {
+        <mesh 
+
+        onPointerEnter={()=> {document.body.style.cursor = "pointer"}}
+        onPointerLeave={()=> {document.body.style.cursor = "default"}}
+        onClick={() => {
+
+          const sound = new Audio('./lightSound.wav');
+          sound.play()
 
           setLightOn(!lightOn)
 
           if (lightOn == true){
             console.log("Light On")
-             actions.toggleLightSwitch.play()
-             actions.toggleLightSwitch.setLoop(LoopOnce, 1)
+            actions.toggleLightSwitch.timeScale = 10
+            actions.toggleLightSwitch.play()
+            actions.toggleLightSwitch.setLoop(LoopOnce, 1)
             lightStateChanger(.9)
 
-            setTimeout(function() {actions.toggleLightSwitch.paused = true}, 1500)
+            setTimeout(function() {actions.toggleLightSwitch.paused = true}, 180)
 
           } else if (lightOn == false){
-            console.log("ligh off!")
+            console.log("light off!")
             lightStateChanger(.1)
             actions.toggleLightSwitch.paused = false
-            setTimeout(function() {actions.toggleLightSwitch.stop()}, 2500)
+            setTimeout(function() {actions.toggleLightSwitch.stop()}, 200)
           }
 
-          }} name="Cube001" geometry={nodes.Cube001.geometry} material={materials['switch']} position={[0,0,0]} rotation={[-1.59, -0.67, 1.56]} scale={[0.94, 1.54, 0.14]} />
-        <mesh geometry={nodes.Cube002.geometry} material={materials.Material} position={[0,0,0]} rotation={[-1.63, -1.3, 1.52]} scale={[0.92, 1.76, 0.14]} />
+          }} 
+
+        name="Cube001" 
+        geometry={nodes.Cube001.geometry} 
+        material={materials['switch']} 
+        position={[0,0,0]} rotation={[-1.59, -0.67, 1.56]} 
+        scale={[0.94, 1.54, 0.14]} 
+        />
+        <mesh 
+        geometry={nodes.Cube002.geometry} 
+        material={materials.Material} 
+        position={[0,0,0]} 
+        rotation={[-1.63, -1.3, 1.52]} 
+        scale={[0.92, 1.76, 0.14]} 
+        />
       </group>
     </group>
   )
