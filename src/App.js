@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, useRef, useState } from 'react'
+import './style.css'
+// import LightSwitch from './LightSwitch'
+import LightSwitch from './LightSwitch'
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default function App() {
+
+    const [lightState, setLightState] = useState(.1)
+
+    
+    return (
+        <div>
+            <Suspense>
+                <Canvas className='canvas' >
+                <directionalLight position={[-6, 11, 30]} intensity={lightState} />
+                    <LightSwitch lightStateChanger={setLightState} />
+                <OrbitControls/>
+                </Canvas>
+                
+            </Suspense>
+        </div>
+    )
 }
-
-export default App;
