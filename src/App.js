@@ -2,6 +2,7 @@ import React, { Suspense, useRef, useState } from 'react'
 import './style.css'
 // import LightSwitch from './LightSwitch'
 import LightSwitch from './LightSwitch'
+import Shelves from './Shelves'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 
@@ -17,6 +18,7 @@ export default function App() {
                 <Canvas className='canvas' >
                 <directionalLight position={[-6, 11, 30]} intensity={lightState} />
                     <LightSwitch lightStateChanger={setLightState} />
+                    <Shelves />
                 <OrbitControls maxDistance={5} minDistance={3} maxAzimuthAngle={.6} minAzimuthAngle={5} />
                 </Canvas>
                 
